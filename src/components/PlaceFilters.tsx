@@ -45,7 +45,7 @@ export default async function PlaceFilters({
 
   return (
     <div className="bg-red-500 p-4">
-      <form action={filterPlaces}>
+      <form action={filterPlaces} key={JSON.stringify(defaultValues)}>
         <div className="space-y-4">
           <div className="flex flex-col gap-2">
             <Label htmlFor="q">Search</Label>
