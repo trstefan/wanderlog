@@ -2,6 +2,7 @@ import prisma from "@/lib/primsa";
 import PlaceItem from "@/components/PlaceItem";
 import { placeFilterValues } from "@/lib/validation";
 import { Prisma } from "@prisma/client";
+import Link from "next/link";
 
 interface PlaceResultsProps {
   filterValues: placeFilterValues;
@@ -42,7 +43,9 @@ export default async function PlacesResult({
   return (
     <div>
       {places.map((place) => (
-        <PlaceItem place={place} key={place.id} />
+        <Link key={place.id} href={`/places/${place.slug}`} className="block">
+          <PlaceItem place={place} />
+        </Link>
       ))}
       {places.length === 0 && (
         <p className="text-center m-auto">No places found</p>
