@@ -2,6 +2,7 @@ import { cache } from "react";
 import prisma from "@/lib/primsa";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import PlacePage from "@/components/PlacePage";
 interface PageProps {
   params: { slug: string };
 }
@@ -13,6 +14,16 @@ const getPlace = cache(async (slug: string) => {
 
   return place;
 });
+
+export async function generateStaticParams() {
+  const places = await prisma.place.findMany({
+    where: { approved: true },
+    select: { slug: true },
+  });
+
+  return places.map(({ slug }) => slug);
+}
+
 export async function generateMetadata({
   params: { slug },
 }: PageProps): Promise<Metadata> {
@@ -28,7 +39,7 @@ export default async function Page({ params: { slug } }: PageProps) {
 
   return (
     <main>
-      <h1>Hello from Place's page</h1>
+      <PlacePage place={place} />
     </main>
   );
 }
