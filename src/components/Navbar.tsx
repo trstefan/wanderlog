@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { ModeToggle } from "./toggle";
 
 export default function Navbar() {
   return (
@@ -20,6 +21,7 @@ export default function Navbar() {
             </span>
           </Link>
           <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <ModeToggle />
             <Button asChild>
               <Link href="/places/new">Add place</Link>
             </Button>

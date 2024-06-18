@@ -20,7 +20,6 @@ export async function createPlacePosting(formData: FormData) {
       name: name.trim(),
       locationType,
       temperatureType,
-      approved: true,
     },
   });
 
