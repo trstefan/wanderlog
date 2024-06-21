@@ -41,7 +41,7 @@ export default async function PlacesResult({
     orderBy: { createdAt: "desc" },
   });
   return (
-    <div>
+    <div className="my-4 p-4 flex flex-wrap gap-4 items-center justify-center">
       {places.map((place) => (
         <Link key={place.id} href={`/places/${place.slug}`} className="block">
           <PlaceItem place={place} />

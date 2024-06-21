@@ -6,11 +6,11 @@ export default async function AdminPage() {
     where: { approved: false },
   });
   return (
-    <main>
-      {" "}
-      <h1 className="font-bold">Admin Page</h1>
-      <h2 className="font font-semibold">Unapproved Places</h2>
-      <section>
+    <main className="py-4">
+      <h2 className="font font-semibold text-3xl pl-8">
+        Places waiting to be approved
+      </h2>
+      <section className="my-4 p-4 flex flex-wrap gap-4 items-center justify-center">
         {unapprovedPlaces.map((place) => (
           <Link
             key={place.id}
