@@ -41,7 +41,7 @@ export default async function PlacesResult({
     orderBy: { createdAt: "desc" },
   });
   return (
-    <div className="my-4 p-4 flex flex-wrap gap-4 items-center justify-center">
+    <section className="grid grid-cols-1 gap-8 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:p-8">
       {places.map((place) => (
         <Link key={place.id} href={`/places/${place.slug}`} className="block">
           <PlaceItem place={place} />
@@ -50,6 +50,6 @@ export default async function PlacesResult({
       {places.length === 0 && (
         <p className="text-center m-auto">No places found</p>
       )}
-    </div>
+    </section>
   );
 }
