@@ -3,6 +3,7 @@ import prisma from "@/lib/primsa";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import PlacePage from "@/components/PlacePage";
+
 interface PageProps {
   params: { slug: string };
 }

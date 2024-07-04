@@ -8,18 +8,18 @@ interface PagePros {
     q?: string;
     locationType?: string;
     temperatureType?: string;
-    isVisited?: string;
+    isNotVisited?: string;
   };
 }
 
 export default async function Home({
-  searchParams: { q, locationType, temperatureType, isVisited },
+  searchParams: { q, locationType, temperatureType, isNotVisited },
 }: PagePros) {
   const filterValues: placeFilterValues = {
     q,
     locationType,
     temperatureType,
-    isVisited: isVisited === "true",
+    isNotVisited: isNotVisited === "true",
   };
 
   return (

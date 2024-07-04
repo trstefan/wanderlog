@@ -14,9 +14,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Input } from "@/components/ui/input";
 import Select from "@/components/ui/select";
-import { temperatureTypes, locationTypes } from "@/lib/place-types";
+import { Label } from "@/components/ui/label";
+
+import { temperatureTypes, locationTypes, status } from "@/lib/place-types";
 import LoadingButton from "@/components/LoadingButton";
+import RichTextEditor from "@/components/RichTextEditor";
 import { createPlacePosting } from "./actions";
+import { draftToMarkdown } from "markdown-draft-js";
 export default function NewPlaceForm() {
   const form = useForm<CreatePlaceValues>({
     resolver: zodResolver(createPlaceSchema),
@@ -80,6 +84,29 @@ export default function NewPlaceForm() {
 
             <FormField
               control={control}
+              name="status"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Status</FormLabel>
+                  <FormControl>
+                    <Select {...field} defaultValue="">
+                      <option value="" hidden>
+                        Select an option
+                      </option>
+                      {status.map((status) => (
+                        <option key={status} value={status}>
+                          {status}
+                        </option>
+                      ))}
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={control}
               name="temperatureType"
               render={({ field }) => (
                 <FormItem>
@@ -118,6 +145,26 @@ export default function NewPlaceForm() {
                         </option>
                       ))}
                     </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <Label onClick={() => setFocus("description")}>
+                    Description
+                  </Label>
+                  <FormControl>
+                    <RichTextEditor
+                      onChange={(draft) =>
+                        field.onChange(draftToMarkdown(draft))
+                      }
+                      ref={field.ref}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

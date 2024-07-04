@@ -1,14 +1,14 @@
+"use client";
 import { Place } from "@prisma/client";
-import { Button } from "./ui/button";
-import { Globe2, Thermometer, Link, Landmark, Flag } from "lucide-react";
+import { Globe2, Thermometer, Link, Landmark } from "lucide-react";
+import TextMarkdown from "./TextMarkdown";
+import PageStatus from "./PlaceStatus";
 
 interface PlacePageProps {
   place: Place;
 }
 
-export default function PlacePage({
-  place: { name, locationType, temperatureType },
-}: PlacePageProps) {
+export default function PlacePage({ place }: PlacePageProps) {
   return (
     <div className=" py-4 px-12">
       <div className="w-full flex md:flex-row flex-col gap-4 ">
@@ -33,11 +33,9 @@ export default function PlacePage({
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1.5">
-              <Flag size={16} className="shrink-0" />
-              <p className="text-base font-medium">Status</p>
-            </div>
-            <Button>Mark as Visited</Button>
+            <p className="text-base font-medium">{place.status}</p>
+
+            <PageStatus place={place} />
           </div>
         </div>
         <div className="md:w-1/2">
@@ -48,14 +46,7 @@ export default function PlacePage({
         </div>
       </div>
       <div className="mt-4">
-        <p className="text-base font-semibold	">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-          explicabo, quam dolor eaque illum non possimus dicta accusantium unde
-          quibusdam a molestiae enim libero tempora aliquam blanditiis veniam
-          reprehenderit consequatur? Quae odit itaque suscipit aut at quo rem
-          vero, impedit aperiam autem in voluptates molestias obcaecati tempore
-          perspiciatis neque? Dignissimos!
-        </p>
+        {place.description && <TextMarkdown>{place.description}</TextMarkdown>}
       </div>
     </div>
   );

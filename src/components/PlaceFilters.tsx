@@ -13,14 +13,21 @@ async function filterPlaces(formData: FormData) {
 
   const values = Object.fromEntries(formData.entries());
 
-  const { q, locationType, temperatureType, isVisited } =
+  const { q, locationType, temperatureType, isNotVisited } =
     placeFilterSchema.parse(values);
+
+  // console.log("Filter values:", {
+  //   q,
+  //   locationType,
+  //   temperatureType,
+  //   isNotVisited,
+  // }); // Debug log
 
   const searchParams = new URLSearchParams({
     ...(q && { q: q.trim() }),
     ...(locationType && { locationType }),
     ...(temperatureType && { temperatureType }),
-    ...(isVisited && { isVisited: "true" }),
+    ...(isNotVisited && { isNotVisited: "true" }),
   });
 
   redirect(`/?${searchParams.toString()}`);
@@ -44,7 +51,7 @@ export default async function PlaceFilters({
     )) as string[];
 
   return (
-    <div className="bg-red-500 p-4">
+    <div className=" bg-[#EDF1FA] dark:bg-[#1D2333] p-4">
       <form action={filterPlaces} key={JSON.stringify(defaultValues)}>
         <div className="space-y-4">
           <div className="flex flex-col gap-2">
@@ -88,13 +95,13 @@ export default async function PlaceFilters({
           </div>
           <div className="flex items-center gap-2">
             <input
-              id="isVisited"
-              name="isVisited"
+              id="isNotVisited"
+              name="isNotVisited"
               type="checkbox"
               className="scale-125 accent-black"
-              defaultChecked={defaultValues.isVisited}
+              defaultChecked={defaultValues.isNotVisited}
             />
-            <label htmlFor="isVisited">Visted</label>
+            <label htmlFor="isNotVisited">Show not visited places</label>
           </div>
           <Button type="submit" className="w-full">
             Filter Places

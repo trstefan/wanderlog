@@ -3,13 +3,14 @@ import PlaceItem from "@/components/PlaceItem";
 import { placeFilterValues } from "@/lib/validation";
 import { Prisma } from "@prisma/client";
 import Link from "next/link";
+import NoResults from "./NoResults";
 
 interface PlaceResultsProps {
   filterValues: placeFilterValues;
 }
 
 export default async function PlacesResult({
-  filterValues: { q, locationType, temperatureType, isVisited },
+  filterValues: { q, locationType, temperatureType, isNotVisited },
 }: PlaceResultsProps) {
   const searchString = q
     ?.split(" ")
@@ -31,25 +32,27 @@ export default async function PlacesResult({
       searchFilter,
       locationType ? { locationType } : {},
       temperatureType ? { temperatureType } : {},
+      isNotVisited ? { status: "Not Visited" } : {},
 
       { approved: true },
     ],
   };
+  //console.log("Filter WHERE clause:", where);
 
   const places = await prisma.place.findMany({
     where,
     orderBy: { createdAt: "desc" },
   });
   return (
-    <section className="grid grid-cols-1 gap-8 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:p-8">
-      {places.map((place) => (
-        <Link key={place.id} href={`/places/${place.slug}`} className="block">
-          <PlaceItem place={place} />
-        </Link>
-      ))}
-      {places.length === 0 && (
-        <p className="text-center m-auto">No places found</p>
-      )}
-    </section>
+    <div className="bg-background dark:bg-gray-900">
+      <section className="w-full grid grid-cols-1 gap-8 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:p-8">
+        {places.map((place) => (
+          <Link key={place.id} href={`/places/${place.slug}`} className="block">
+            <PlaceItem place={place} />
+          </Link>
+        ))}
+      </section>
+      {places.length === 0 && <NoResults />}
+    </div>
   );
 }

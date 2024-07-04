@@ -35,7 +35,7 @@ function ApprovePlaceSubmissionButton({ placeId }: AdminButtonProps) {
     <form action={formAction} className="space-y-1">
       <input hidden name="placeId" value={placeId} />
       <FormSubmitButton className="w-full bg-green-500 hover:bg-green-600">
-        Approved
+        Approve
       </FormSubmitButton>
       {formState?.error && <p className="text-red-500">{formState.error}</p>}
     </form>
@@ -49,7 +49,7 @@ function DeletePlaceButton({ placeId }: AdminButtonProps) {
     <form action={formAction} className="space-y-1">
       <input hidden name="placeId" value={placeId} />
       <FormSubmitButton className="w-full bg-red-500 hover:bg-red-600">
-        Deleted
+        Delete
       </FormSubmitButton>
       {formState?.error && <p className="text-red-500">{formState.error}</p>}
     </form>
