@@ -13,10 +13,10 @@ export default function PlaceItem({
     { label: "Temperature Type", value: temperatureType || "" },
   ];
   const statusClasses =
-    status === "Not Visited" ? "bg-blue-500" : "bg-green-500";
+    status === "Not Visited" ? "bg-[#BE2A48]" : "bg-[#69ABC1]";
 
   return (
-    <div className="bg-red-500 relative overflow-hidden rounded-lg shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl">
+    <div className="bg-[#EDF1FA] dark:bg-[#1D2333]  relative overflow-hidden rounded-lg shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl ">
       <img
         src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
         alt="Card Image"
@@ -31,7 +31,7 @@ export default function PlaceItem({
             <h4 className="text-lg font-semibold italic ">London</h4>
           </div>
           <p
-            className={`block p-2 text-sm font-bold rounded-lg ${statusClasses}`}
+            className={`block p-2 text-sm text-[#222222] font-bold rounded-lg ${statusClasses}`}
           >
             {status}
           </p>

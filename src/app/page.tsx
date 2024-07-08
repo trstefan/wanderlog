@@ -2,6 +2,7 @@ import { ModeToggle } from "@/components/toggle";
 import PlaceFilters from "@/components/PlaceFilters";
 import PlacesResult from "@/components/PlaceResults";
 import { placeFilterValues } from "@/lib/validation";
+import Hero from "@/components/Hero";
 
 interface PagePros {
   searchParams: {
@@ -24,6 +25,7 @@ export default async function Home({
 
   return (
     <main className="">
+      <Hero />
       <div>
         <PlaceFilters defaultValues={filterValues} />
         <PlacesResult filterValues={filterValues} />
