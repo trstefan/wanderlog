@@ -6,14 +6,14 @@ interface PlaceItem {
 }
 
 export default function PlaceItem({
-  place: { name, locationType, temperatureType, status },
+  place: { name, location, locationType, temperatureType, status },
 }: PlaceItem) {
   const infoArray = [
     { label: "Location Type", value: locationType || "" },
     { label: "Temperature Type", value: temperatureType || "" },
   ];
   const statusClasses =
-    status === "Not Visited" ? "bg-[#BE2A48]" : "bg-[#69ABC1]";
+    status === "Not Visited" ? "bg-[#ff6b6b]" : "bg-[#1089b1]";
 
   return (
     <div className="bg-[#EDF1FA] dark:bg-[#1D2333]  relative overflow-hidden rounded-lg shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl ">
@@ -28,10 +28,9 @@ export default function PlaceItem({
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-xl font-bold">{name}</h3>
-            <h4 className="text-lg font-semibold italic ">London</h4>
           </div>
           <p
-            className={`block p-2 text-sm text-[#222222] font-bold rounded-lg ${statusClasses}`}
+            className={`block p-2 text-center text-sm text-[#0e0909] font-bold rounded-lg ${statusClasses}`}
           >
             {status}
           </p>

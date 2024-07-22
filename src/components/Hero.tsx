@@ -1,30 +1,30 @@
-import Link from "next/link";
-import { Button } from "./ui/button";
+import Tag from "./Tag";
 
 export default function Hero() {
   return (
-    <div className="flex flex-col md:flex-row w-full max-w-5xl mx-auto gap-8 p-6 md:p-12">
+    <div className="flex flex-col md:flex-row w-full max-w-5xl mx-auto gap-8 p-6 md:p-12 ">
       <div className="flex flex-col items-start justify-center flex-1 space-y-4">
-        <h2 className="text-3xl font-bold">Don't know what place to visit?</h2>
-        <p className="text-muted-foreground">
-          With a simple click you can find exciting new places to visit.
+        <h1 className="text-2xl font-bold">Don't know which place to visit?</h1>
+        <p className="text-muted-foreground font-semibold">
+          Dive into your next adventure right now!
         </p>
-        <Button className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
-          Get a new destination
-        </Button>
       </div>
-      <div className="flex-1 bg-[#EDF1FA] dark:bg-[#1D2333]">
+      <div className="flex-1 bg-[#EDF1FA] dark:bg-[#1D2333] rounded-lg shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl">
         <div className="h-full">
           <img
-            src="https://placehold.co/600x400"
+            src="https://img.buzzfeed.com/buzzfeed-static/static/2024-03/15/0/asset/f34ca90d22b1/sub-buzz-1828-1710462954-1.jpg?downsize=600:*&output-format=auto&output-quality=auto"
             alt="Product Image"
             className="rounded-t-md object-cover w-full aspect-[4/3]"
           />
           <div className="p-6 space-y-2">
-            <h3 className="text-xl font-semibold">Our Flagship Product</h3>
-            <p className="text-muted-foreground">
-              Revolutionize your workflow with our cutting-edge solution.
-            </p>
+            <h3 className="text-xl font-semibold">Seto Inland Sea</h3>
+
+            <div className="flex flex-wrap gap-2 mt-2">
+              {" "}
+              <Tag tag={"Island"} />
+              <Tag tag={"Beach"} />
+              <Tag tag={"Cold"} />
+            </div>
           </div>
         </div>
       </div>

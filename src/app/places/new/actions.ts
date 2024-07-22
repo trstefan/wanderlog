@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 export async function createPlacePosting(formData: FormData) {
   const values = Object.fromEntries(formData.entries());
 
-  const { name, temperatureType, locationType, status, description } =
+  const { name, temperatureType, location, locationType, status, description } =
     createPlaceSchema.parse(values);
 
   const slug = `${toSlug(name)}-${nanoid(10)}`;
@@ -21,6 +21,7 @@ export async function createPlacePosting(formData: FormData) {
       locationType,
       temperatureType,
       status,
+      location,
       description: description?.trim(),
     },
   });

@@ -18,6 +18,7 @@ export const createPlaceSchema = z.object({
     "Invalid status"
   ),
   description: z.string().max(5000).optional(),
+  location: z.string().max(100).optional(),
 });
 
 export type CreatePlaceValues = z.infer<typeof createPlaceSchema>;

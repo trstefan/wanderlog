@@ -8,7 +8,7 @@ interface MarkdownProps {
 export default function TextMarkdown({ children }: MarkdownProps) {
   return (
     <ReactMarkdown
-      className="space-y-3"
+      className="space-y-3  p-2 rounded-lg"
       components={{
         ul: (props) => <ul className="list-inside list-disc" {...props} />,
         a: (props) => (

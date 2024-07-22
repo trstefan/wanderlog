@@ -1,18 +1,19 @@
 "use client";
 import { Place } from "@prisma/client";
-import TextMarkdown from "./TextMarkdown";
-import PageStatus from "./PlaceStatus";
+
 import { Globe2, Thermometer, Link, Landmark } from "lucide-react";
 
-interface PlacePageProps {
+import TextMarkdown from "@/components/TextMarkdown";
+
+interface AdminPlacePageProps {
   place: Place;
 }
 
-export default function PlacePage({ place }: PlacePageProps) {
+export default function AdminPlacePage({ place }: AdminPlacePageProps) {
   console.log(place);
   return (
-    <div className=" py-4 px-12">
-      <div className="w-full max-w-6xl mx-auto grid md:grid-cols-2 gap-8 p-4 md:p-8">
+    <section className="w-full grow space-y-5">
+      <div className="w-full max-w-6xl mx-auto grid md:grid-cols-2 gap-8  ">
         <div className="relative overflow-hidden rounded-lg shadow-lg">
           <img
             src="https://img.buzzfeed.com/buzzfeed-static/static/2024-03/15/0/asset/f34ca90d22b1/sub-buzz-1828-1710462954-1.jpg?downsize=600:*&output-format=auto&output-quality=auto"
@@ -28,21 +29,28 @@ export default function PlacePage({ place }: PlacePageProps) {
               <h2 className="text-2xl font-bold">{place.name}</h2>
             </div>
             <div className="flex items-center gap-2 text-sm font-medium">
-              {place.status && place.status === "Visited" ? (
-                <CheckIcon className="w-5 h-5 text-green-500" />
-              ) : (
-                <XIcon className="text-red-500" />
-              )}
+              <div className="flex items-center gap-2 text-sm font-medium">
+                {place.status && place.status === "Visited" ? (
+                  <CheckIcon className="w-5 h-5 text-green-500" />
+                ) : (
+                  <XIcon className="text-red-500" />
+                )}
 
-              <span>{place.status}</span>
+                <span>{place.status}</span>
+              </div>
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            {" "}
             {place.locationType && (
               <div className="flex items-center gap-1.5">
                 <Landmark size={16} className="shrink-0" />
                 <p className="text-base font-medium">{place.locationType}</p>
+              </div>
+            )}
+            {place.locationType && (
+              <div className="flex items-center gap-1.5">
+                <Landmark size={16} className="shrink-0" />
+                <p className="text-base font-medium">Link</p>
               </div>
             )}
             {place.temperatureType && (
@@ -61,14 +69,10 @@ export default function PlacePage({ place }: PlacePageProps) {
                 </span>
               </div>
             )}
-            <PageStatus place={place} />
           </div>
         </div>
       </div>
-      <div className="mt-4">
-        {place.description && <TextMarkdown>{place.description}</TextMarkdown>}
-      </div>
-    </div>
+    </section>
   );
 }
 

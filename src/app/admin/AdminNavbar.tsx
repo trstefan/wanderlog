@@ -10,14 +10,11 @@ export default function AdminNavbar() {
   const router = useRouter();
 
   return (
-    <div className="bg-red-500 max-w-full flex flex-wrap items-center justify-between mx-auto p-4">
+    <div className="container flex h-16 items-center justify-between border-t bg-muted px-4 md:px-6">
       <Link href="/admin" className="font-semibold underline">
         <Button>Admin Dashbord</Button>
       </Link>
-      <div className="space-x-2 flex items-center sm:flex-row flex-col">
-        <span className="font-semibold italic">
-          {user?.primaryEmailAddress?.emailAddress}
-        </span>
+      <div className="flex items-center gap-2">
         <Button
           onClick={async () => {
             await signOut();

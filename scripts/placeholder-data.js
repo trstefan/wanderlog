@@ -4,8 +4,8 @@ const placeholderPlaces = [
     locationType: "City",
     slug: "bucharest",
     temperatureType: "Cold",
-    status: "Visited",
-    isVisited: true,
+    location: "San Francisco, California, United States",
+    status: "Not Visited",
     approved: true,
     description: `
 **About Stripe**
@@ -48,12 +48,12 @@ Stripe is an equal opportunity employer. We value diversity and are committed to
 `,
   },
   {
-    name: "Rome",
+    name: "Milano",
     locationType: "City",
-    slug: "rome",
+    slug: "milano",
     temperatureType: "Moderate",
+    location: "Milano, Lombardy, Italy",
     status: "Not Visited",
-    isVisited: false,
     approved: true,
     description: `
 **About Stripe**

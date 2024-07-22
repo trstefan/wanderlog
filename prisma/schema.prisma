@@ -21,6 +21,7 @@ model Place {
   name String
   status String 
   locationType String?
+  location String? 
   temperatureType String?
   description String?
   approved  Boolean  @default(false)

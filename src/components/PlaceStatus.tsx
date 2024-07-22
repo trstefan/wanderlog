@@ -28,7 +28,7 @@ function MarkAsVisitedButton({ placeId }: PlaceStatusButtonProps) {
     <form action={formAction} className="space-y-1">
       <input hidden name="placeId" value={placeId} />
       <FormSubmitButton className="w-full bg-green-500 hover:bg-green-600">
-        Mark as Seen
+        Mark as Visited
       </FormSubmitButton>
     </form>
   );

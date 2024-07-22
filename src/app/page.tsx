@@ -1,4 +1,4 @@
-import { ModeToggle } from "@/components/toggle";
+import { useRef } from "react";
 import PlaceFilters from "@/components/PlaceFilters";
 import PlacesResult from "@/components/PlaceResults";
 import { placeFilterValues } from "@/lib/validation";

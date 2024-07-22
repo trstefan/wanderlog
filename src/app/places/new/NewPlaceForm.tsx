@@ -9,18 +9,19 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { CreatePlaceValues, createPlaceSchema } from "@/lib/validation";
+import LocationInput from "@/components/LocationInput";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { Input } from "@/components/ui/input";
 import Select from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
-
 import { temperatureTypes, locationTypes, status } from "@/lib/place-types";
 import LoadingButton from "@/components/LoadingButton";
 import RichTextEditor from "@/components/RichTextEditor";
 import { createPlacePosting } from "./actions";
 import { draftToMarkdown } from "markdown-draft-js";
+import { X } from "lucide-react";
+
 export default function NewPlaceForm() {
   const form = useForm<CreatePlaceValues>({
     resolver: zodResolver(createPlaceSchema),
@@ -54,13 +55,20 @@ export default function NewPlaceForm() {
 
   return (
     <main className="max-w-3xl m-auto my-10 space-y-10">
-      <div>
-        <h1 className="font-bold">Add a new place</h1>
+      <div className="space-y-3 text-center">
+        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+          Explore New Destinations
+        </h2>
+        <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+          Share Your Next Adventure
+        </p>
       </div>
       <div className="space-y-6 rounded-lg border p-4">
         <div>
-          <h2 className="font-semibold"> Place details</h2>
-          <p className="text-muted-forebround"> Provide place details</p>
+          <h2 className="font-semibold"> Add New Place</h2>
+          <p className="text-muted-forebround">
+            Fill out the form to add a new place to your trip journal.
+          </p>
         </div>
         <Form {...form}>
           <form
@@ -75,7 +83,60 @@ export default function NewPlaceForm() {
                 <FormItem>
                   <FormLabel>Place name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Add location name" {...field} />
+                    <Input placeholder="e.g. Eiffle Tower" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={control}
+              name="location"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Office location</FormLabel>
+                  <FormControl>
+                    <LocationInput
+                      onLocationSelected={field.onChange}
+                      ref={field.ref}
+                    />
+                  </FormControl>
+                  {watch("location") && (
+                    <div className="flex items-center gap-1">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setValue("location", "", { shouldValidate: true });
+                        }}
+                      >
+                        <X size={20} />
+                      </button>
+                      <span className="text-sm">{watch("location")}</span>
+                    </div>
+                  )}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={control}
+              name="locationType"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Location type</FormLabel>
+                  <FormControl>
+                    <Select {...field} defaultValue="">
+                      <option value="" hidden>
+                        Select an option
+                      </option>
+                      {locationTypes.map((locationType) => (
+                        <option key={locationType} value={locationType}>
+                          {locationType}
+                        </option>
+                      ))}
+                    </Select>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -130,28 +191,6 @@ export default function NewPlaceForm() {
 
             <FormField
               control={control}
-              name="locationType"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Location type</FormLabel>
-                  <FormControl>
-                    <Select {...field} defaultValue="">
-                      <option value="" hidden>
-                        Select an option
-                      </option>
-                      {locationTypes.map((locationType) => (
-                        <option key={locationType} value={locationType}>
-                          {locationType}
-                        </option>
-                      ))}
-                    </Select>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={control}
               name="description"
               render={({ field }) => (
                 <FormItem>
@@ -172,7 +211,7 @@ export default function NewPlaceForm() {
             />
 
             <LoadingButton type="submit" loading={isSubmitting}>
-              Submit
+              Add place
             </LoadingButton>
           </form>
         </Form>

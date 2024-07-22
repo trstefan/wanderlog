@@ -4,7 +4,7 @@ interface TagProps {
 
 export default function Tag({ tag }: TagProps) {
   return (
-    <span className="flex items-center mr-2 mb-2 px-3 py-1 bg-[#CDCDD0] rounded-full text-sm text-[#222222] font-medium capitalize">
+    <span className="flex items-center mr-2 mb-2 px-3 py-1 bg-[#CDCDD0] rounded-full text-sm text-[#0e0909] font-semibold capitalize">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"

@@ -11,7 +11,7 @@ interface AdminSidebarProps {
 
 export default function AdminSidebar({ place }: AdminSidebarProps) {
   return (
-    <aside className="flex w-[200px] flex-none flex-row items-center gap-2 md:flex-col md:items-stretch">
+    <aside className="flex w-[200px] flex-none flex-row items-center gap-2 md:flex-col md:items-stretch ">
       {place.approved ? (
         <span className="text-center font-semibold text-green-500">
           Approved

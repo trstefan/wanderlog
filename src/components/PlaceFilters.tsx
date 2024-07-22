@@ -52,6 +52,12 @@ export default async function PlaceFilters({
 
   return (
     <div className=" bg-[#EDF1FA] dark:bg-[#1D2333] p-4">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold">Find Your Perfect Getaway</h2>
+        <p className="text-muted-foreground font-semibold">
+          Customize your search to find the ideal vacation spot.
+        </p>
+      </div>
       <form action={filterPlaces} key={JSON.stringify(defaultValues)}>
         <div className="space-y-4">
           <div className="flex flex-col gap-2">

@@ -45,6 +45,11 @@ export default async function PlacesResult({
   });
   return (
     <div className="bg-background dark:bg-gray-900">
+      <div className="px-4 py-4">
+        <h1 className="text-3xl font-bold">
+          Journey logs from all around the Globe
+        </h1>
+      </div>
       <section className="w-full grid grid-cols-1 gap-8 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:p-8">
         {places.map((place) => (
           <Link key={place.id} href={`/places/${place.slug}`} className="block">
