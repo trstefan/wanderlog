@@ -2,7 +2,9 @@
 import { Place } from "@prisma/client";
 import TextMarkdown from "./TextMarkdown";
 import PageStatus from "./PlaceStatus";
-import { Globe2, Thermometer, Link, Landmark } from "lucide-react";
+import { Globe2, Thermometer, Landmark } from "lucide-react";
+import { Button } from "./ui/button";
+import Link from "next/link";
 
 interface PlacePageProps {
   place: Place;
@@ -11,11 +13,11 @@ interface PlacePageProps {
 export default function PlacePage({ place }: PlacePageProps) {
   console.log(place);
   return (
-    <div className=" py-4 px-12">
+    <div className=" py-4 px-12  min-h-full">
       <div className="w-full max-w-6xl mx-auto grid md:grid-cols-2 gap-8 p-4 md:p-8">
         <div className="relative overflow-hidden rounded-lg shadow-lg">
           <img
-            src="https://img.buzzfeed.com/buzzfeed-static/static/2024-03/15/0/asset/f34ca90d22b1/sub-buzz-1828-1710462954-1.jpg?downsize=600:*&output-format=auto&output-quality=auto"
+            src={place.picture ?? "place.picture"}
             alt="Destination Image"
             width={800}
             height={600}
@@ -61,8 +63,14 @@ export default function PlacePage({ place }: PlacePageProps) {
                 </span>
               </div>
             )}
+
             <PageStatus place={place} />
           </div>
+          {place.link && (
+            <Link href={place.link}>
+              <Button>View more</Button>
+            </Link>
+          )}
         </div>
       </div>
       <div className="mt-4">

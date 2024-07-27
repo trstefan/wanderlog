@@ -44,7 +44,7 @@ export default async function PlacesResult({
     orderBy: { createdAt: "desc" },
   });
   return (
-    <div className="bg-background dark:bg-gray-900">
+    <div className="bg-background dark:bg-gray-900 mb-4">
       <div className="px-4 py-4">
         <h1 className="text-3xl font-bold">
           Journey logs from all around the Globe

@@ -10,7 +10,7 @@ export default function AdminNavbar() {
   const router = useRouter();
 
   return (
-    <div className="container flex h-16 items-center justify-between border-t bg-muted px-4 md:px-6">
+    <div className="w-full container flex h-16 items-center justify-between  px-4 md:px-6">
       <Link href="/admin" className="font-semibold underline">
         <Button>Admin Dashbord</Button>
       </Link>

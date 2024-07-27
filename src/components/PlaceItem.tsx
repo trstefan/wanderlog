@@ -6,7 +6,7 @@ interface PlaceItem {
 }
 
 export default function PlaceItem({
-  place: { name, location, locationType, temperatureType, status },
+  place: { name, picture, locationType, temperatureType, status },
 }: PlaceItem) {
   const infoArray = [
     { label: "Location Type", value: locationType || "" },
@@ -18,7 +18,7 @@ export default function PlaceItem({
   return (
     <div className="bg-[#EDF1FA] dark:bg-[#1D2333]  relative overflow-hidden rounded-lg shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl ">
       <img
-        src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
+        src={picture ?? "picture"}
         alt="Card Image"
         width={500}
         height={300}

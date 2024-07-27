@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <body className="h-screen flex flex-col">
         {" "}
         <ThemeProvider
           attribute="class"
@@ -25,7 +25,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          {children}
+          <main className="flex-grow p-4">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

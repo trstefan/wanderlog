@@ -24,7 +24,7 @@ export default async function Home({
   };
 
   return (
-    <main className="">
+    <main>
       <Hero />
       <div>
         <PlaceFilters defaultValues={filterValues} />

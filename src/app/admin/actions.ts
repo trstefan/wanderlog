@@ -5,6 +5,7 @@ import { currentUser } from "@clerk/nextjs";
 import prisma from "@/lib/primsa";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { del } from "@vercel/blob";
 
 type FormState = { error?: string } | undefined;
 
@@ -47,6 +48,10 @@ export async function deletePlace(prevState: FormState, formData: FormData) {
     }
 
     const place = await prisma.place.findUnique({ where: { id: placeId } });
+
+    if (place?.picture) {
+      await del(place.picture);
+    }
 
     await prisma.place.delete({ where: { id: placeId } });
 

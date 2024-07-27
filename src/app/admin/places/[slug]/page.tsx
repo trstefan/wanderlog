@@ -15,9 +15,13 @@ export default async function Page({ params: { slug } }: PageProps) {
 
   return (
     <main className="flex justify-center items-center h-screen w-full">
-      <div className="flex justify-center w-[90%] py-12 px-4 gap-8  bg-[#EDF1FA] dark:bg-[#1D2333] rounded-lg">
-        <AdminPlacePage place={place} />
-        <AdminSidebar place={place} />
+      <div className="flex flex-col md:flex-row justify-center w-[90%] py-12 px-4 gap-8 bg-[#EDF1FA] dark:bg-[#1D2333] rounded-lg">
+        <div className="order-2 md:order-1 w-full md:w-auto">
+          <AdminPlacePage place={place} />
+        </div>
+        <div className="order-1 md:order-2 w-full md:w-auto">
+          <AdminSidebar place={place} />
+        </div>
       </div>
     </main>
   );

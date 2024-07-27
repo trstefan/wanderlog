@@ -23,6 +23,8 @@ model Place {
   locationType String?
   location String? 
   temperatureType String?
+  picture String? 
+  link String? 
   description String?
   approved  Boolean  @default(false)
   createdAt DateTime @default(now())

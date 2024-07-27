@@ -16,7 +16,7 @@ export default function AdminPlacePage({ place }: AdminPlacePageProps) {
       <div className="w-full max-w-6xl mx-auto grid md:grid-cols-2 gap-8  ">
         <div className="relative overflow-hidden rounded-lg shadow-lg">
           <img
-            src="https://img.buzzfeed.com/buzzfeed-static/static/2024-03/15/0/asset/f34ca90d22b1/sub-buzz-1828-1710462954-1.jpg?downsize=600:*&output-format=auto&output-quality=auto"
+            src={place.picture ?? "place.picture"}
             alt="Destination Image"
             width={800}
             height={600}

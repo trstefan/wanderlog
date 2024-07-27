@@ -39,6 +39,7 @@ export default function NewPlaceForm() {
 
   async function onSubmit(values: CreatePlaceValues) {
     const formData = new FormData();
+    console.log(formData);
 
     Object.entries(values).forEach(([key, value]) => {
       if (value) {
@@ -92,10 +93,32 @@ export default function NewPlaceForm() {
 
             <FormField
               control={control}
+              name="locationPicture"
+              render={({ field: { value, ...fieldValues } }) => (
+                <FormItem>
+                  <FormLabel>Picture</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...fieldValues}
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        fieldValues.onChange(file);
+                      }}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={control}
               name="location"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Office location</FormLabel>
+                  <FormLabel>Location</FormLabel>
                   <FormControl>
                     <LocationInput
                       onLocationSelected={field.onChange}
@@ -183,6 +206,28 @@ export default function NewPlaceForm() {
                         </option>
                       ))}
                     </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={control}
+              name="link"
+              render={({ field }) => (
+                <FormItem className="grow">
+                  <FormLabel>How to visit</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Website"
+                      type="url"
+                      {...field}
+                      onChange={(e) => {
+                        field.onChange(e);
+                        trigger("link");
+                      }}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

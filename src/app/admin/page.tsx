@@ -1,3 +1,4 @@
+import NoResults from "@/components/NoResults";
 import PlaceItem from "@/components/PlaceItem";
 import prisma from "@/lib/primsa";
 import Link from "next/link";
@@ -10,7 +11,7 @@ export default async function AdminPage() {
       <h2 className="font font-semibold text-3xl pl-8">
         Places waiting to be approved
       </h2>
-      <section className="my-4 p-4 flex flex-wrap gap-4 items-center justify-center">
+      <section className="w-full grid grid-cols-1 gap-8 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:p-8">
         {unapprovedPlaces.map((place) => (
           <Link
             key={place.id}
@@ -21,6 +22,7 @@ export default async function AdminPage() {
           </Link>
         ))}
       </section>
+      {unapprovedPlaces.length === 0 && <NoResults />}
     </main>
   );
 }
