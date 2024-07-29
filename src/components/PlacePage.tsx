@@ -17,7 +17,11 @@ export default function PlacePage({ place }: PlacePageProps) {
       <div className="w-full max-w-6xl mx-auto grid md:grid-cols-2 gap-8 p-4 md:p-8">
         <div className="relative overflow-hidden rounded-lg shadow-lg">
           <img
-            src={place.picture ?? "place.picture"}
+            src={
+              place.picture
+                ? place.picture ?? "place.picture"
+                : "/placeholder.jpg"
+            }
             alt="Destination Image"
             width={800}
             height={600}

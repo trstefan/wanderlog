@@ -15,10 +15,12 @@ export default function PlaceItem({
   const statusClasses =
     status === "Not Visited" ? "bg-[#ff6b6b]" : "bg-[#1089b1]";
 
+  const pictureElement = picture || "/placeholder.jpg";
+
   return (
     <div className="bg-[#EDF1FA] dark:bg-[#1D2333]  relative overflow-hidden rounded-lg shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl ">
       <img
-        src={picture ?? "picture"}
+        src={pictureElement}
         alt="Card Image"
         width={500}
         height={300}
