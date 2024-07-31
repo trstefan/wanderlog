@@ -5,10 +5,10 @@ export default function Hero() {
     <div className="flex flex-col md:flex-row w-full max-w-5xl mx-auto gap-8 p-6 md:p-12 ">
       <div className="flex flex-col items-start justify-center flex-1 space-y-4">
         <h1 className="text-2xl font-bold">
-          Don&apos;t know which place to visit?
+          Ready for your next great escape?
         </h1>
         <p className="text-muted-foreground font-semibold">
-          Dive into your next adventure right now!
+          Unleash your inner explorer and start your adventure now!
         </p>
       </div>
       <div className="flex-1 bg-[#EDF1FA] dark:bg-[#1D2333] rounded-lg shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl">
