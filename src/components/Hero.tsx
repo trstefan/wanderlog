@@ -4,7 +4,9 @@ export default function Hero() {
   return (
     <div className="flex flex-col md:flex-row w-full max-w-5xl mx-auto gap-8 p-6 md:p-12 ">
       <div className="flex flex-col items-start justify-center flex-1 space-y-4">
-        <h1 className="text-2xl font-bold">Don't know which place to visit?</h1>
+        <h1 className="text-2xl font-bold">
+          Don&apos;t know which place to visit?
+        </h1>
         <p className="text-muted-foreground font-semibold">
           Dive into your next adventure right now!
         </p>
