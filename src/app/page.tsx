@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import PlaceFilters from "@/components/PlaceFilters";
 import PlacesResult from "@/components/PlaceResults";
 import { placeFilterValues } from "@/lib/validation";
@@ -10,11 +9,12 @@ interface PagePros {
     locationType?: string;
     temperatureType?: string;
     isNotVisited?: string;
+    page?: string;
   };
 }
 
 export default async function Home({
-  searchParams: { q, locationType, temperatureType, isNotVisited },
+  searchParams: { q, locationType, temperatureType, isNotVisited, page },
 }: PagePros) {
   const filterValues: placeFilterValues = {
     q,
@@ -26,10 +26,13 @@ export default async function Home({
   return (
     <main>
       <Hero />
-      <div>
-        <PlaceFilters defaultValues={filterValues} />
-        <PlacesResult filterValues={filterValues} />
-      </div>
+
+      <PlaceFilters defaultValues={filterValues} />
+
+      <PlacesResult
+        filterValues={filterValues}
+        page={page ? parseInt(page) : undefined}
+      />
     </main>
   );
 }

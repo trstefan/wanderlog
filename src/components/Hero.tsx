@@ -1,35 +1,81 @@
-import Tag from "./Tag";
+"use client";
+
+import { useEffect, useRef } from "react";
+import { motion, useInView, useAnimation } from "framer-motion";
+import AnimatedLocationCards from "./AnimtedLocationCards";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function Hero() {
-  return (
-    <div className="flex flex-col md:flex-row w-full max-w-5xl mx-auto gap-8 p-6 md:p-12 ">
-      <div className="flex flex-col items-start justify-center flex-1 space-y-4">
-        <h1 className="text-2xl font-bold">
-          Ready for your next great escape?
-        </h1>
-        <p className="text-muted-foreground font-semibold">
-          Unleash your inner explorer and start your adventure now!
-        </p>
-      </div>
-      <div className="flex-1 bg-[#EDF1FA] dark:bg-[#1D2333] rounded-lg shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl">
-        <div className="h-full">
-          <img
-            src="https://img.buzzfeed.com/buzzfeed-static/static/2024-03/15/0/asset/f34ca90d22b1/sub-buzz-1828-1710462954-1.jpg?downsize=600:*&output-format=auto&output-quality=auto"
-            alt="Product Image"
-            className="rounded-t-md object-cover w-full aspect-[4/3]"
-          />
-          <div className="p-6 space-y-2">
-            <h3 className="text-xl font-semibold">Seto Inland Sea</h3>
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
-            <div className="flex flex-wrap gap-2 mt-2">
-              {" "}
-              <Tag tag={"Island"} />
-              <Tag tag={"Beach"} />
-              <Tag tag={"Cold"} />
-            </div>
-          </div>
-        </div>
-      </div>
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [controls, isInView]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+      },
+    },
+  };
+
+  return (
+    <div className="flex flex-col md:flex-row w-full max-w-6xl mx-auto gap-12 md:gap-16 p-6 md:p-12 items-center">
+      <motion.div
+        ref={ref}
+        initial="hidden"
+        animate={controls}
+        variants={containerVariants}
+        className="flex flex-col items-start justify-center flex-1 space-y-6 z-10"
+      >
+        <motion.h1
+          variants={itemVariants}
+          className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight"
+        >
+          Ready for your <span className="text-primary">next great</span>{" "}
+          escape?
+        </motion.h1>
+
+        <motion.p
+          variants={itemVariants}
+          className="text-lg md:text-xl text-muted-foreground font-medium max-w-md"
+        >
+          Unleash your inner explorer and start your adventure now! Find hidden
+          gems and unforgettable experiences.
+        </motion.p>
+      </motion.div>
+
+      <motion.div
+        ref={ref}
+        initial="hidden"
+        animate={controls}
+        variants={containerVariants}
+        className="flex-1 w-full flex justify-center items-center"
+      >
+        <AnimatedLocationCards />
+      </motion.div>
     </div>
   );
 }

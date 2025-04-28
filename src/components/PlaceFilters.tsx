@@ -51,7 +51,7 @@ export default async function PlaceFilters({
     )) as string[];
 
   return (
-    <div className=" bg-[#EDF1FA] dark:bg-[#1D2333] p-4">
+    <div className=" bg-[#EDF1FA] dark:bg-[#1D2333] p-4 rounded-xl">
       <div className="mb-6">
         <h2 className="text-2xl font-bold">Find Your Perfect Getaway</h2>
         <p className="text-muted-foreground font-semibold">

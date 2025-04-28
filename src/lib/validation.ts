@@ -25,7 +25,7 @@ export const createPlaceSchema = z
       "Invalid Temperature Type"
     ),
     locationType: requiredString.refine(
-      (value) => locationTypes.includes(value),
+      (value) => locationTypes.includes(value) || value.trim().length > 0,
       "Invalid locationType"
     ),
     status: requiredString.refine(

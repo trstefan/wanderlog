@@ -21,8 +21,11 @@ import RichTextEditor from "@/components/RichTextEditor";
 import { createPlacePosting } from "./actions";
 import { draftToMarkdown } from "markdown-draft-js";
 import { X } from "lucide-react";
+import { useState } from "react";
 
 export default function NewPlaceForm() {
+  const [customLocationType, setCustomLocationType] = useState(false);
+
   const form = useForm<CreatePlaceValues>({
     resolver: zodResolver(createPlaceSchema),
   });
@@ -150,22 +153,41 @@ export default function NewPlaceForm() {
                 <FormItem>
                   <FormLabel>Location type</FormLabel>
                   <FormControl>
-                    <Select {...field} defaultValue="">
-                      <option value="" hidden>
-                        Select an option
-                      </option>
-                      {locationTypes.map((locationType) => (
-                        <option key={locationType} value={locationType}>
-                          {locationType}
+                    {!customLocationType ? (
+                      <Select
+                        {...field}
+                        onChange={(e) => {
+                          const selectedValue = (e.target as HTMLSelectElement)
+                            .value; // Explicitly cast e.target
+                          if (selectedValue === "custom") {
+                            setCustomLocationType(true);
+                            setValue("locationType", "");
+                          } else {
+                            field.onChange(e);
+                          }
+                        }}
+                      >
+                        <option value="" hidden>
+                          Select an option
                         </option>
-                      ))}
-                    </Select>
+                        {locationTypes.map((locationType) => (
+                          <option key={locationType} value={locationType}>
+                            {locationType}
+                          </option>
+                        ))}
+                        <option value="custom">Other...</option>
+                      </Select>
+                    ) : (
+                      <Input
+                        placeholder="Enter custom location type"
+                        {...field}
+                      />
+                    )}
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-
             <FormField
               control={control}
               name="status"
